@@ -392,12 +392,14 @@ void term_main_loop()
 {
     ee_printf("Waiting for UART data (115200,8,N,1)\n");
 
+#if 0
     /**/
     while( uart_buffer_start == uart_buffer_end )
         usleep(100000 );
     /**/
 
     gfx_term_putstring( "\x1B[2J" );
+#endif
 
     char strb[2] = {0,0};
 

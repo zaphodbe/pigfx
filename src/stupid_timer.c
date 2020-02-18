@@ -33,7 +33,11 @@ unsigned attach_timer_handler( unsigned hz, _TimerHandler* handler, void *pParam
             timers[hnd].handler = handler;
             timers[hnd].pParam = pParam;
             timers[hnd].pContext = pContext;
-            timers[hnd].microsec_interval = 1000000/hz;
+            if (hz) {
+                timers[hnd].microsec_interval = 1000000 / hz;
+            } else {
+                timers[hnd].microsec_interval = 0;
+            }
             timers[hnd].last_tick = time_microsec();
             return hnd;
         }
